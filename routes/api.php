@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\People;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('/michalec/53054')->group(function () {
+    Route::get('people', [People::class, 'index']);
+    Route::get('people/{id}', [People::class, 'show']);
+    Route::put('people/{id}', [People::class, 'update']);
+    Route::delete('people/{id}', [People::class, 'remove']);
+    Route::post('people', [People::class, 'create']);
 });
